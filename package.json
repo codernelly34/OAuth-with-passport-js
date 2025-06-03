@@ -1,0 +1,30 @@
+{
+  "name": "oauth-with-passport",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "this project is for me to learn and understand how to implement OAuth with the passport.js library",
+  "homepage": "https://github.com/codernelly34/OAuth-with-passport-js#readme",
+  "bugs": {
+    "url": "https://github.com/codernelly34/OAuth-with-passport-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codernelly34/OAuth-with-passport-js.git"
+  },
+  "license": "MIT",
+  "author": "codernelly34",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
