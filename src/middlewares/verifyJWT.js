@@ -1,11 +1,12 @@
 import jwt from "jsonwebtoken";
 function verifyToken(req, res, next) {
   const { token } = req.cookies;
-  if (!token) return res.status(401).json({ error: "No token provided" });
+  if (!token) return res.redirect("/");
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(403).json({ error: "Invalid token" });
+    if (err) return res.redirect("/");
     req.user = decoded;
+
     next();
   });
 }
