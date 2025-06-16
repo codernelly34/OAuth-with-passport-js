@@ -24,7 +24,7 @@ passport.use(
         };
 
         UsersDB.push(newUser);
-        done(null, newUser);
+        return done(null, newUser);
       }
       done(null, user);
     }

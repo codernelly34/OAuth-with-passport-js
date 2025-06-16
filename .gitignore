@@ -5,6 +5,8 @@ test.js
 .vscode
 package-lock.json
 pnpm-lock.yaml
+1.js
+2.js
 
 # Logs
 logs
