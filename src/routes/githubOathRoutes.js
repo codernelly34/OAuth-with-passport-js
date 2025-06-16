@@ -27,6 +27,16 @@ passport.use(
         return done(null, newUser);
       }
 
+      if (user && user.provider !== "github") {
+        // If user exists but provider is not github, reject login
+        return done(
+          `This email is already registered with ${capitalize(
+            user.provider
+          )}. Please login using your ${capitalize(user.provider)} account.`,
+          null
+        );
+      }
+
       done(null, user);
     }
   )

@@ -4,6 +4,7 @@ const UsersDB = [
     given_name: "Coder2",
     family_name: "Nelly",
     email: "codernelly30@gmail.com",
+    provider: "google",
   },
 ];
 
