@@ -3,6 +3,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import googleOauthRoutes from "./routes/googleOathRoutes.js";
 import verifyToken from "./middlewares/verifyJWT.js";
+import githubOauthRoutes from "./routes/githubOathRoutes.js";
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.get("/", (req, res) => {
             <a href="/dashboard">Go to Dashboard</a><br>
             <br/>
             <a href="/auth/google/register">Sign In with Google</a>
+            <br/>
+            <br/>
+            <a href="/auth/github/register">Sign In with Github</a>
           `);
 });
 
@@ -31,6 +35,7 @@ app.get("/dashboard", verifyToken, (req, res) => {
 });
 
 app.use("/auth/google", googleOauthRoutes);
+app.use("/auth/github", githubOauthRoutes);
 
 // Start server
 const PORT = process.env.PORT || 3000;

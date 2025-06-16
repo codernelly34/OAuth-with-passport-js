@@ -1,9 +1,9 @@
 const UsersDB = [
   {
-    name: "Coder Nelly",
-    given_name: "Coder",
+    name: "Coder2 Nelly",
+    given_name: "Coder2",
     family_name: "Nelly",
-    email: "codernelly34@gmail.com",
+    email: "codernelly30@gmail.com",
   },
 ];
 
