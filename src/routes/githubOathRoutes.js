@@ -3,6 +3,7 @@ import UsersDB from "../db/usersDB.js";
 import { Router } from "express";
 import issueAuthToken from "../utils/issueAuthToken.js";
 import { Strategy as GitHubStrategy } from "passport-github";
+import { capitalize } from "../utils/utilsFun.js";
 
 const githubOauthRoutes = Router();
 
@@ -30,9 +31,11 @@ passport.use(
       if (user && user.provider !== "github") {
         // If user exists but provider is not github, reject login
         return done(
-          `This email is already registered with ${capitalize(
-            user.provider
-          )}. Please login using your ${capitalize(user.provider)} account.`,
+          new Error(
+            `This email is already registered with ${capitalize(
+              user.provider
+            )}. Please login using your ${capitalize(user.provider)} account.`
+          ),
           null
         );
       }
@@ -50,9 +53,8 @@ githubOauthRoutes.get("/register", passport.authenticate("github"));
 // 👇 Github callback
 githubOauthRoutes.get("/redirect", (req, res, next) => {
   passport.authenticate("github", async (err, user, info) => {
-    console.log("Redirect route triggered");
     if (err) {
-      return res.redirect("/");
+      return res.status(400).send({ error: err.message });
     }
 
     issueAuthToken(user, res);

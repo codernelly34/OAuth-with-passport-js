@@ -30,9 +30,11 @@ passport.use(
       if (user && user.provider !== "google") {
         // If user exists but provider is not google, reject login
         return done(
-          `This email is already registered with ${capitalize(
-            user.provider
-          )}. Please login using your ${capitalize(user.provider)} account.`,
+          new Error(
+            `This email is already registered with ${capitalize(
+              user.provider
+            )}. Please login using your ${capitalize(user.provider)} account.`
+          ),
           null
         );
       }
@@ -53,7 +55,7 @@ googleOauthRoutes.get(
 googleOauthRoutes.get("/redirect", (req, res, next) => {
   passport.authenticate("google", async (err, user, info) => {
     if (err) {
-      return res.redirect("/");
+      return res.status(400).send({ error: err.message });
     }
 
     issueAuthToken(user, res);
